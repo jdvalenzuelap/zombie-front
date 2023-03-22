@@ -1,5 +1,11 @@
+import MapComponent from "../components/MapComponent";
+
 const Mapa = () => {
-  return <div>mapa</div>
+  return (
+    <div className="Mapa">
+      <MapComponent />
+    </div>
+  )
 }
 
-export default Mapa
+export default Mapa;

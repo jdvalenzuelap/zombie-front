@@ -3,6 +3,10 @@ import Navbar from '../components/Navbar'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+  }
+  
   return (
     <>
       <Navbar />

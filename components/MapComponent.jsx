@@ -10,6 +10,7 @@ import Map, {
   } from "react-map-gl";
 
 import { useState } from "react";
+import config from "../config/keys";
 
 function MapComponent() {
   const [lng, setLng] = useState(54.37585762735543);
@@ -21,7 +22,7 @@ function MapComponent() {
     {console.log(process.env.REACT_APP_MAP_KEY)}
       
       <Map
-        mapboxAccessToken={"pk.eyJ1IjoiYWxmcmVkZ2ciLCJhIjoiY2xmanZ4dnFyMDNqYjNzdGEzdGVldWh6dSJ9.QkbBp_QzALUsWv-eNJ6gGg"}
+        mapboxAccessToken={config.mapBoxKey}
         
         style={{
             display: "flex",

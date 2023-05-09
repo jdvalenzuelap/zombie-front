@@ -16,14 +16,15 @@ function MapComponent() {
   const [lat, setLat] = useState(24.45677614934833);
 
   return (
-    <div className="Mapa">
+    
+    <div className="Mapa" style={{display: "flex", justifyContent: "center"}} >
     {console.log(process.env.REACT_APP_MAP_KEY)}
-      <h1>Mapbox</h1>
       
       <Map
         mapboxAccessToken={"pk.eyJ1IjoiYWxmcmVkZ2ciLCJhIjoiY2xmanZ4dnFyMDNqYjNzdGEzdGVldWh6dSJ9.QkbBp_QzALUsWv-eNJ6gGg"}
         
         style={{
+            display: "flex",
             width: "500px",
             height: "500px",
             borderRadius: "15px",

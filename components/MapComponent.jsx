@@ -15,11 +15,11 @@ import config from "../config/keys";
 function MapComponent() {
   const [lng, setLng] = useState(54.37585762735543);
   const [lat, setLat] = useState(24.45677614934833);
+  console.log(config.mapBoxKey);
 
   return (
     
     <div className="Mapa" style={{display: "flex", justifyContent: "center"}} >
-    {console.log(process.env.REACT_APP_MAP_KEY)}
       
       <Map
         mapboxAccessToken={config.mapBoxKey}

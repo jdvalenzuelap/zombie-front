@@ -1,10 +1,17 @@
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import '../styles/globals.css'
+import { useEffect, useState } from 'react'
 
 function MyApp({ Component, pageProps }) {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
+  const [webNavigator, setWebNavigator] = useState(null)
+
+  useEffect(() => {
+    setWebNavigator(navigator)
+  }, [webNavigator])
+
+  if (webNavigator && 'serviceWorker' in webNavigator) {
+    webNavigator.serviceWorker.register('/sw.js')
   }
   
   return (

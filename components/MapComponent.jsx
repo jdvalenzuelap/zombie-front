@@ -1,21 +1,31 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import Map, {
     Marker,
     NavigationControl,
-    Popup,
     FullscreenControl,
     GeolocateControl,
   } from "react-map-gl";
 
-import { useState } from "react";
 import config from "../config/keys";
 
 function MapComponent() {
-  const [lng, setLng] = useState(54.37585762735543);
-  const [lat, setLat] = useState(24.45677614934833);
-  console.log(config.mapBoxKey);
+
+  const [markers, setMarkers] = useState([
+    { longitude: -103.348953, latitude: 20.659698 },
+    { longitude: -103.448953, latitude: 20.759698 },
+    { longitude: -103.548953, latitude: 20.859698 },
+  ]);
+
+  const addMarker = (longitude, latitude) => {
+    const newMarker = { longitude, latitude };
+    setMarkers([...markers, newMarker]);
+  };
+
+  const markerClick = (marker) => {
+    console.log("Hola")
+  };
 
   return (
     
@@ -32,13 +42,20 @@ function MapComponent() {
             border: "2px solid red",
         }}
 
-        initialViewState={{
-          longitude: lng,
-          latitude: lat,
-        }}
+        // latitude={markers[0].latitude}
+        // longitude={markers[0].longitude}
+        // zoom={8}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
-        <Marker longitude={lng} latitude={lat} />
+        
+        {markers.map((marker, index) => (
+          <Marker 
+            key={index}
+            longitude={marker.longitude}
+            latitude={marker.latitude}
+            onClick={markerClick}/>
+        ))}
+
         <NavigationControl position="bottom-right" />
         <FullscreenControl />
 

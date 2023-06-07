@@ -16,7 +16,6 @@ a {
 }
 
 nav {
-  margin: 10px auto 80px;
   padding: 10px 0;
   display: flex;
   justify-content: center;
@@ -58,4 +57,11 @@ nav {
   margin-top: 8px;
   color: #999;
   font-size: 14px;
+}
+
+.post-background {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.05);
+  min-height: 90vh;
 }

@@ -1,10 +1,10 @@
 const postController = require('../controllers/post.controller');
+const userController = require('../controllers/user.controller');
 
 const express = require('express');
 const router = express.Router();
-
-
-router.get('/', postController.getAllPosts);
+//userController.loginRequired,
+router.get('/',  postController.getAllPosts);
 router.post("/", postController.createPost);
 router.get('/:id', postController.getPost);
 router.patch('/:id', postController.updatePost);

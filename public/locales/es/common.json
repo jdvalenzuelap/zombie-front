@@ -1,0 +1,17 @@
+{
+    "mapa": "Mapa",
+    "home": "Inicio",
+    "posts": "Publicaciones",
+    "login": "Iniciar Sesión",
+    "register": "Registrarte",
+    "languaje": "Español",
+    "publishTitle": "Publicar algo nuevo",
+    "createdOn": "Creado:",
+    "title": "Título",
+    "content": "Contenido",
+    "publish": "Publicar",
+    "cancel": "Cancelar",
+    "username": "Nombre de Usuario",
+    "password": "Contraseña",
+    "email": "Correo"
+}

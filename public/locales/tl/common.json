@@ -13,5 +13,12 @@
     "cancel": "Xu'uls a meyaj",
     "username": "K'aaba' usuario",
     "password": "T'aano' mukul tsikbal",
-    "email": "Correo"
+    "email": "Correo",
+    "resourcesMap": "ye'esajil u nu'ukulo'ob ye'esajil u ye",
+    "writeResource": "ingrese jump'éel recurso",
+    "resourceName": "K'aaba' le recurso:",
+    "resourceDescription": "Tsoolil le recurso:",
+    "longitud": "Longitud",
+    "latitud": "Latitud",
+    "save": "Ooks"
 }

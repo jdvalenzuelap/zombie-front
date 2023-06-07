@@ -13,5 +13,12 @@
     "cancel": "Cancelar",
     "username": "Nombre de Usuario",
     "password": "Contraseña",
-    "email": "Correo"
+    "email": "Correo",
+    "resourcesMap": "Mapa de recursos",
+    "writeResource": "Ingrese un Recurso",
+    "resourceName": "Nombre del recurso:",
+    "resourceDescription": "Descripción del recurso:",
+    "longitud": "Longitud",
+    "latitud": "Latitud",
+    "save": "Guardar"
 }

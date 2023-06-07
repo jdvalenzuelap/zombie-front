@@ -35,8 +35,8 @@ exports.getPost = async (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
-    if (!req.body.title || !req.body.content) {
-        res.status(400).json({ message: "Title and content are required" });
+    if (!req.body.title || !req.body.content || !req.body.isImage) {
+        res.status(400).json({ message: "Title, content and isImage are required"});
     } else if (req.body.title.length < 5 || req.body.content.length < 5) {
         res.status(400).json({
             message: "Title and content must be at least 5 characters long",
@@ -50,6 +50,7 @@ exports.createPost = async (req, res) => {
         const post = new Post({
             title: req.body.title,
             content: req.body.content,
+            isImage: req.body.isImage,
         });
         try {
             const newPost = await post.save();
@@ -66,8 +67,8 @@ exports.updatePost = async (req, res) => {
         res.status(400).json({ message: "Id is required" });
     } else if (!mongoose.Types.ObjectId.isValid(id)) {
         res.status(400).json({ message: "Id is not valid" });
-    } else if (!req.body.title && !req.body.content) {
-        res.status(400).json({ message: "Title or content are required" });
+    } else if (!req.body.title && !req.body.content && !req.body.isImage) {
+        res.status(400).json({ message: "Title, content and isImage are required" });
     } else {
         try {
             const post = await Post.findByIdAndUpdate(
@@ -75,6 +76,7 @@ exports.updatePost = async (req, res) => {
                 {
                     title: req.body.title,
                     content: req.body.content,
+                    isImage: req.body.isImage
                 },
                 { new: true }
             );

@@ -13,6 +13,10 @@ const postSchema = new mongoose.Schema({
         minlength: 1,
         maxlength: 254,
     },
+    isImage: {
+        type: Boolean,
+        required: true,
+    },
     date: {
         type: Date,
         default: Date.now,

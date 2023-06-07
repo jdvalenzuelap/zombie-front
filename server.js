@@ -12,9 +12,14 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 dotenv.config();
 
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+};
+
 const baseURL = '/api/v1/zombie';
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -30,7 +35,8 @@ db.once('open', () => console.log('Connected to MongoDB'));
 app.prepare().then(() => {
   const server = express();
 
-  server.use(cors({allowedHeaders: ['Authorization']}));
+  // Middleware
+  server.use(cors(corsOptions));
   server.use(express.json({ extended: true }));
 
   // Middleware para manejo de tokens y usuarios

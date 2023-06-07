@@ -10,7 +10,7 @@ const Posts = () => {
   }, [])
 
   const fetchData = async () => {
-    const response = await fetch('/api/v1/zombie/post', {
+    const response = await fetch('http://localhost:3001/api/v1/zombie/post', {
       method: 'GET'
     })
 
@@ -36,7 +36,7 @@ const Posts = () => {
       content: content
     }
 
-    const response = await fetch('/api/v1/zombie/post', {
+    const response = await fetch('http://localhost:3001/api/v1/zombie/post', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

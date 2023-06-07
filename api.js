@@ -9,4 +9,5 @@ export const getPersons = async () => {
       console.error(err)
       throw err
     }
-  }
+}
+

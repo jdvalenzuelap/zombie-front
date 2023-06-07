@@ -7,6 +7,7 @@ const Mapa = () => {
   const [showForm, setShowForm] = useState(false)
   const { t } = useTranslation()
 
+
   //Variables
   const [nombreRecurso, setNombreRecurso] = useState('')
   const [descripcionRecurso, setDescripcionRecurso] = useState('')

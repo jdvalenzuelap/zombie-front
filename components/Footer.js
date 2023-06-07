@@ -1,7 +1,7 @@
 const Footer = () => {
     return ( 
-        <div>
-            Copyright 2021 Ninja List
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '5rem'}}>
+            Copyright 2023 Tec equipo chido
         </div>
      );
 }

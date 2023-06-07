@@ -1,9 +1,12 @@
 import MapComponent from '../components/MapComponent'
 import { useState } from 'react'
+import { useTranslation } from "react-i18next"
 
 const Mapa = () => {
   const [showResource, setShowResource] = useState(false)
   const [showForm, setShowForm] = useState(false)
+  const { t } = useTranslation()
+
 
   //Variables
   const [nombreRecurso, setNombreRecurso] = useState('')
@@ -26,7 +29,7 @@ const Mapa = () => {
           marginBottom: '1rem',
         }}
       >
-        <h1 style={{ margin: 0, marginRight: '4rem' }}>Mapa de recursos</h1>
+        <h1 style={{ margin: 0, marginRight: '4rem' }}>{t("resourcesMap")}</h1>
         <button onClick={() => setShowForm(true)}>+</button>
       </div>
 
@@ -41,11 +44,11 @@ const Mapa = () => {
                 marginTop: '1rem',
               }}
             >
-              Ingrese un Recurso
+              {t("writeResource")}
             </h2>
             <ul>
               <li style={{ marginBottom: '0.5rem' }}>
-                <label htmlFor="nombre">Nombre del recurso:</label>
+                <label htmlFor="nombre">{t("resourceName")}</label>
                 <input
                   type="text"
                   id="nombre"
@@ -54,7 +57,7 @@ const Mapa = () => {
                 />
               </li>
               <li style={{ marginBottom: '0.5rem' }}>
-                <label htmlFor="descripcion">Descripción del recurso:</label>
+                <label htmlFor="descripcion">{t("resourceDescription")}</label>
                 <textarea
                   id="descripcion"
                   //value={descripcionRecurso}
@@ -62,7 +65,7 @@ const Mapa = () => {
                 ></textarea>
               </li>
               <li style={{ marginBottom: '0.5rem' }}>
-                <label htmlFor="longitud">Longitud:</label>
+                <label htmlFor="longitud">{t("longitud")}</label>
                 <input
                   type="number"
                   id="longitud"
@@ -71,7 +74,7 @@ const Mapa = () => {
                 />
               </li>
               <li style={{ marginBottom: '0.5rem' }}>
-                <label htmlFor="latitud">Latitud:</label>
+                <label htmlFor="latitud">{t("latitud")}</label>
                 <input
                   type="number"
                   id="latitud"
@@ -87,8 +90,8 @@ const Mapa = () => {
                 marginTop: '1rem',
               }}
             >
-              <button style={{ marginRight: '0.5rem' }} onClick={handleGuardar} >Guardar</button>
-              <button onClick={() => setShowForm(false)}>Cancelar</button>
+              <button style={{ marginRight: '0.5rem' }} onClick={handleGuardar}>{t("save")}</button>
+              <button onClick={() => setShowForm(false)}>{t("cancel")}</button>
             </div>
           </div>
         )}

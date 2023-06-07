@@ -1,11 +1,21 @@
 import Link from 'next/link'
+import LanguajeSelector from './LanguajeSelector'
+import { useTranslation } from "react-i18next"
+import { Box } from '@mui/material'
 
 const Navbar = () => {
+  const { t } = useTranslation()
+
   return (
     <nav>
-      <Link href="/" className='nav-button'>Home</Link>
-      <Link href="/posts" className='nav-button'>Posts</Link>
-      <Link href="/mapa" className='nav-button'>Mapa</Link>
+      <Box display="flex" alignItems="center">
+        <Link href="/" className='nav-button'>{t("home")}</Link>
+        <Link href="/posts" className='nav-button'>{t("posts")}</Link>
+        <Link href="/mapa" className='nav-button'>{t("mapa")}</Link>
+      </Box>
+      <div style={{ position: 'absolute', right: 40 }}>
+        <LanguajeSelector />
+      </div>
     </nav>
   )
 }

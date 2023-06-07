@@ -14,8 +14,34 @@ const Mapa = () => {
   const [longitud, setLongitud] = useState(0)
   const [latitud, setLatitud] = useState(0)
 
+  const createPoint = async () => {
+    const response = await fetch('http://localhost:3001/api/v1/zombie/point', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: nombreRecurso,
+        description: descripcionRecurso,
+        lon: longitud,
+        lat: latitud,
+      }),
+    })
+
+    const result = await response.json()
+
+    if (response.ok) {
+      console.log(response)
+      // setPostReadings(posts)
+    } else {
+      console.log(result)
+    }
+  }
+
   const handleGuardar = () => {
     // Lógica para guardar la información ingresada en el formulario
+    console.log(nombreRecurso, descripcionRecurso, longitud, latitud);
+    createPoint()
     setShowForm(false)
   }
 
@@ -42,44 +68,45 @@ const Mapa = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 marginTop: '1rem',
+                marginLeft: '2rem',
               }}
             >
               {t("writeResource")}
             </h2>
-            <ul>
-              <li style={{ marginBottom: '0.5rem' }}>
-                <label htmlFor="nombre">{t("resourceName")}</label>
+            <ul style={{ display: 'flex', flexDirection: 'column'}}>
+              <li style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column' }}>
+                <label style={{ marginBottom: '0.5rem' }} htmlFor="nombre">{t("resourceName")}</label>
                 <input
                   type="text"
                   id="nombre"
-                  //value={nombreRecurso}
-                  //onChange={(e) => setNombreRecurso(e.target.value)}
+                  value={nombreRecurso}
+                  onChange={(e) => setNombreRecurso(e.target.value)}
                 />
               </li>
-              <li style={{ marginBottom: '0.5rem' }}>
-                <label htmlFor="descripcion">{t("resourceDescription")}</label>
+              <li style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column' }}>
+                <label style={{ marginBottom: '0.5rem' }} htmlFor="descripcion">{t("resourceDescription")}</label>
                 <textarea
                   id="descripcion"
-                  //value={descripcionRecurso}
-                  //onChange={(e) => setDescripcionRecurso(e.target.value)}
+                  value={descripcionRecurso}
+                  onChange={(e) => setDescripcionRecurso(e.target.value)}
                 ></textarea>
               </li>
-              <li style={{ marginBottom: '0.5rem' }}>
-                <label htmlFor="longitud">{t("longitud")}</label>
+              <li style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column' }}>
+                <label style={{ marginBottom: '0.5rem' }} htmlFor="longitud">{t("longitud")}</label>
                 <input
                   type="number"
                   id="longitud"
-                  //value={longitud}
-                  //onChange={(e) => setLongitud(e.target.value)}
+                  value={longitud}
+                  onChange={(e) => setLongitud(e.target.value)}
                 />
               </li>
-              <li style={{ marginBottom: '0.5rem' }}>
-                <label htmlFor="latitud">{t("latitud")}</label>
+              <li style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column' }}>
+                <label style={{ marginBottom: '0.5rem' }} htmlFor="latitud">{t("latitud")}</label>
                 <input
                   type="number"
                   id="latitud"
-                  //value={latitud}
-                  //onChange={(e) => setLatitud(e.target.value)}
+                  value={latitud}
+                  onChange={(e) => setLatitud(e.target.value)}
                 />
               </li>
             </ul>

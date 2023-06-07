@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import Map, {
@@ -11,20 +11,48 @@ import Map, {
 import config from '../config/keys'
 
 function MapComponent() {
+  const [showResource, setShowResource] = useState(false)
   const [markers, setMarkers] = useState([
     { longitude: -103.348953, latitude: 20.659698 },
     { longitude: -103.448953, latitude: 20.759698 },
     { longitude: -103.548953, latitude: 20.859698 },
   ])
+  const [markerShown, setMarkerShown] = useState()
+
+  useEffect(() => { 
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    const response = await fetch('http://localhost:3001/api/v1/zombie/point', {
+      method: 'GET'
+    })
+
+    const result = await response.json()
+
+    if (response.ok) {
+      const points = result.map(point => ({
+        title: point.title,
+        description: point.description,
+        longitude: point.lon,
+        latitude: point.lat,
+        id: point._id,
+      }))
+      console.log(points)
+      setMarkers(points)
+    } else {
+      console.log(result)
+    }
+  }
 
   const addMarker = (longitude, latitude) => {
     const newMarker = { longitude, latitude }
     setMarkers([...markers, newMarker])
   }
 
-  const [showResource, setShowResource] = useState(false)
 
   const markerClick = (marker) => {
+    setMarkerShown(marker)
     setShowResource((prevValue) => !prevValue)
   }
 
@@ -49,7 +77,7 @@ function MapComponent() {
             key={index}
             longitude={marker.longitude}
             latitude={marker.latitude}
-            onClick={markerClick}
+            onClick={() => markerClick(marker)}
           />
         ))}
 
@@ -60,8 +88,10 @@ function MapComponent() {
       </Map>
       {showResource && (
         <div style={{ marginLeft: '2rem' }}>
-          <h2>Nombre del recurso</h2>
-          <p>Descripción del recurso</p>
+          <h2>{markerShown.title}</h2>
+          <p>{markerShown.description}</p>
+          <p>Lon: {markerShown.longitude}</p>
+          <p>Lat: {markerShown.latitude}</p>
         </div>
       )}
     </div>

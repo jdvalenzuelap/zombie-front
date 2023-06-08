@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import { useRouter } from 'next/router'
 
 import Map, {
   Marker,
@@ -18,6 +19,7 @@ function MapComponent() {
     { longitude: -103.548953, latitude: 20.859698 },
   ])
   const [markerShown, setMarkerShown] = useState()
+  const router = useRouter()
 
   useEffect(() => { 
     fetchData()
@@ -40,6 +42,21 @@ function MapComponent() {
       }))
       console.log(points)
       setMarkers(points)
+    } else {
+      console.log(result)
+    }
+  }
+
+  const errasePoint = async (id) => {
+    const response = await fetch(`http://localhost:3001/api/v1/zombie/point/delete/${id}`, {
+      method: 'DELETE'
+    })
+
+    const result = await response.json()
+
+    if (response.ok) {
+      console.log(result)
+      router.reload()
     } else {
       console.log(result)
     }
@@ -92,6 +109,7 @@ function MapComponent() {
           <p>{markerShown.description}</p>
           <p>Lon: {markerShown.longitude}</p>
           <p>Lat: {markerShown.latitude}</p>
+          <button onClick={() => errasePoint(markerShown.id)}>Borrar punto</button>
         </div>
       )}
     </div>

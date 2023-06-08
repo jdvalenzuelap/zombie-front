@@ -1,6 +1,7 @@
 import MapComponent from '../components/MapComponent'
 import { useState } from 'react'
 import { useTranslation } from "react-i18next"
+import { useRouter } from 'next/router'
 
 const Mapa = () => {
   const [showResource, setShowResource] = useState(false)
@@ -13,6 +14,7 @@ const Mapa = () => {
   const [descripcionRecurso, setDescripcionRecurso] = useState('')
   const [longitud, setLongitud] = useState(0)
   const [latitud, setLatitud] = useState(0)
+  const router = useRouter()
 
   const createPoint = async () => {
     const response = await fetch('http://localhost:3001/api/v1/zombie/point', {
@@ -32,7 +34,7 @@ const Mapa = () => {
 
     if (response.ok) {
       console.log(response)
-      // setPostReadings(posts)
+      router.reload()
     } else {
       console.log(result)
     }
@@ -53,6 +55,7 @@ const Mapa = () => {
           justifyContent: 'center',
           alignItems: 'center',
           marginBottom: '1rem',
+          marginTop: '2rem',
         }}
       >
         <h1 style={{ margin: 0, marginRight: '4rem' }}>{t("resourcesMap")}</h1>

@@ -35,7 +35,9 @@ exports.getPost = async (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
-    if (!req.body.title || !req.body.content || !req.body.isImage) {
+    if (!req.body.title || !req.body.content || req.body.isImage === 'undefined') {
+        console.log(!req.body.title, !req.body.content, !req.body.isImage)
+        console.log(req.body)
         res.status(400).json({ message: "Title, content and isImage are required"});
     } else if (req.body.title.length < 5 || req.body.content.length < 5) {
         res.status(400).json({
